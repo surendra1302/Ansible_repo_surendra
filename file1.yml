@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks: 
+    - name: installing_git
+      apt:
+        name: git
+        state: present
+    - name: copy_file
+      copy: 
+        src: /home/ubuntu/file1.yml
+        dest: /home/ubuntu
+    - name: changing_permission
+      file:
+        path: /home/ubuntu/file1.yml 
+        owner: root
+        group: root
+        mode: 666  

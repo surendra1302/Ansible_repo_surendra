@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: install_ubuntu_flavour
+      when: ansible_distribution == "Ubuntu"
+      apt:
+          name: git
+          state: present
+    - name: install_centos_flavour
+      when: ansible_distribution == "centos"
+      yum:
+          name: git
+          state: present

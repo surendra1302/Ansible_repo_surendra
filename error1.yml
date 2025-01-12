@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+ #ignore_unreachable: true
+ #ignore_errors: true
+  tasks:
+    - name: listing_files
+      ignore_errors: true
+      shell: ls1 /home/ubuntu
+      register: list_display
+    - debug:
+        var: list_display
+    - name: date_display
+      ignore_errors: true
+      shell: dates
+      register: date_today
+    - debug:
+        var: date_today
