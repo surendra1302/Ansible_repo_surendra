@@ -1,11 +1,11 @@
 pipeline {
-    agent { label 'slave02' }
+    agent { label 'slave2' }
     stages {
-        stage('Grafana Installation') {
+        stage('Node_Exporter Installation') {
             steps {
                 sh '''
                 export ANSIBLE_HOST_KEY_CHECKING=False
-                ansible-playbook -i /etc/ansible/hosts /opt/Ansible_repo_bkp/grafana-site.yaml -vv
+                ansible-playbook -i /etc/ansible/hosts /home/ubuntu/prometheus.yml -vvv
                 '''
             }
         }
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh '''
                 export ANSIBLE_HOST_KEY_CHECKING=False
-                ansible-playbook -i /etc/ansible/hosts /opt/Ansible_repo_bkp/prometheus-site.yaml -vv
+                ansible-playbook -i /etc/ansible/hosts /home/ubuntu/prometheus.yml -vvv
                 '''
             }
         }
