@@ -1,8 +1,0 @@
----
-- hosts: all
-  become: yes
-  tasks:
-    - name: installing_multiple_packages
-      apt:
-        name: [ 'git', 'wget']
-        state: present
