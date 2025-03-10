@@ -1,0 +1,27 @@
+---
+- name: Install and Start Apache2 Web Server
+  hosts: all
+  become: yes  # Run as root
+
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: present
+
+    - name: Start Apache2 service
+      service:
+        name: apache2
+        state: started
+        enabled: yes  # Enable on boot
+
+    - name: Open HTTP (port 80) in firewall
+      ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+      when: ansible_os_family == "Debian"
